@@ -24,4 +24,4 @@ sudo chown root ./david.com.conf
 cp ./david.com.conf /etc/httpd/conf.d/david.com.conf
 sudo chown -R apache: /var/www/html/david.com
 sudo systemctl restart httpd
-cp /var/www/html/david.com/wp-config-sample.php /var/www/html/david.com/wp-config.php
+#cp /var/www/html/david.com/wp-config-sample.php /var/www/html/david.com/wp-config.php
