@@ -9,7 +9,7 @@ if (( $? == 0 )); then
 	cd /tmp
 	wget -O nagioscore.tar.gz https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios-4.4.5.tar.gz
 	tar xzf nagioscore.tar.gz
-	cd nagioscore-nagios-4.4.5
+	cd nagios-4.4.5
 	./configure
 	make all
 	make install-groups-users
