@@ -16,7 +16,17 @@ if (( $? == 0 )); then
 	usermod -a -G nagios apache
 	make install
 	make install-daemoninit
+	# configs for the web interface
 	systemctl enable httpd.service
+	firewall-cmd --add-service=http --permanent
+	firewall-cmd --reload
+	make install-commandmode
+	# Installs sample configs to 
+	make install-config
+	# Installs configs for Apache
+	make install-webconf
+	# Installs the init script in /lib/systemd/system
+	make install-init 
 else
 	echo "Dependencies unmet or other yummy errors encountered"
 fi 
