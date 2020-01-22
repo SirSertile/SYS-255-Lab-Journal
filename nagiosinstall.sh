@@ -20,6 +20,7 @@ if (( $? == 0 )); then
 	systemctl enable httpd.service
 	firewall-cmd --add-service=http --permanent
 	firewall-cmd --reload
+	systemctl restart httpd.service
 	make install-commandmode
 	# Installs sample configs to 
 	make install-config
