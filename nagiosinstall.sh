@@ -31,6 +31,7 @@ if (( $? == 0 )); then
 	systemctl restart nagios.service
 	htpasswd -c -b /usr/local/nagios/etc/htpasswd.users nagiosadmin admin
 	echo "Sets the default nagiosadmin password to admin. CHANGE THIS ON YOUR OWN."
+	echo "Navigate to (server's IP)/nagios and enter the default password and admin"
 else
 	echo "Dependencies unmet or other yummy errors encountered"
 fi 
