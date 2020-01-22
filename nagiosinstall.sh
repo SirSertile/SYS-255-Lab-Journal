@@ -29,7 +29,7 @@ if (( $? == 0 )); then
 	# Installs the init script in /lib/systemd/system
 	make install-init 
 	systemctl restart nagios.service
-	htpasswd -c /usr/local/nagios/etc/htpaswd.users nagiosadmin admin
+	htpasswd -c -b /usr/local/nagios/etc/htpasswd.users nagiosadmin admin
 	echo "Sets the default nagiosadmin password to admin. CHANGE THIS ON YOUR OWN."
 else
 	echo "Dependencies unmet or other yummy errors encountered"
