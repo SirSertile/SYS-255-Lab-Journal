@@ -5,7 +5,7 @@ if (( $EUID != 0 )); then
 	exit
 fi
 yum -y install gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix 
-if [ $? -eq 0 ]; then
+if (( $? == 0 )); then
 	cd /tmp
 	wget -O nagioscore.tar.gz
 	tar xzf nagioscore.tar.gz
@@ -19,4 +19,4 @@ if [ $? -eq 0 ]; then
 	systemctl enable httpd.service
 else
 	echo "Dependencies unmet or other yummy errors encountered"
-fi
+fi 
