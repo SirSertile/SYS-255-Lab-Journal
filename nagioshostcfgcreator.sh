@@ -21,10 +21,10 @@ while getopts "ch: " option; do
 		h)
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
-			ip=$option
+			ip=$OPTARG
 			# Checks via regex if it's actually an IP 
 			if [[ $ip =~ ^(\d{1,3}.){3}\d{1,3}$ ]]; then
-				hostname=$(host $ip | awk '{print $5})
+				hostname=$(host $ip | awk '{print $5}')
 				host=$($hostname | cut -d. -f1)
 				printf "%s\n" \ 
 				"define host {" \ 
@@ -38,6 +38,9 @@ while getopts "ch: " option; do
 			else
 				echo "$ip is not a valid ip"
 			fi
+		;;
+		\?)
+			echo "Illegal argument $OPTARG"
 		;;
 	esac
 done
