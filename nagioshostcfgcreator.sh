@@ -11,7 +11,7 @@ while getopts "ch: " option; do
 		c)
 			# Creates and implements a directory for nagios to find config files in. 
 			trailing=$(tail -n 1 nagios.cfg)
-			if [ "$trailing" = "cfg_dir=/usr/local/nagios/etc/hosts" ]; then
+			if [ "$trailing" != "cfg_dir=/usr/local/nagios/etc/hosts" ]; then
 				mkdir hosts
 				echo "Updating nagios.cfg to add hosts folder. . ."
 				echo "# Defining hosts folder for nagios." >> nagios.cfg
