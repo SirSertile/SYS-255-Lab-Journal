@@ -22,20 +22,20 @@ while getopts "ch: " option; do
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
 			ip=$OPTARG
-			# Checks via ipcalc if it's actually an IP 
-			cd /usr/local/nagios/etc/hosts
+			# Checks via regex if it's actually an IP 
 			if ipcalc -cs $ip; then
-				hostname=$(host $ip | awk '{print $5}')
-				host=$( echo $hostname | cut -d. -f1)
+				host=$(host $ip | awk '{print $5}' | cut -d. -f1)
 				contents="define host {
-					use 	generic-host
-					host_name	$host
-					alias	$hostname				
-					address	$ip
-					hostgroups	allgroups
+				\tuse 	\t generic-host
+				\thost_name	\t $host
+				\talias	\t $host				
+				\taddress	\t $ip
+				\tmax_check_attempts \t 2
+				\tfirst_notification_delay \t 0
+				\tcheck_interval \t 1
 				}"
-				echo $contents > $host.cfg
-				echo "Creation of $host.cfg successful"
+				echo -e $contents > $host.cfg
+				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
 			fi
