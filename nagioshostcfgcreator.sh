@@ -23,8 +23,7 @@ while getopts "ch: " option; do
 			# Command to get the host from the IP 
 			ip=$OPTARG
 			# Checks via regex if it's actually an IP 
-			pat="(\d{1 3}.){3}\d{1 3}"
-			if [[ $ip =~ $pat ]]; then
+			if ipcalc -cs $ip; then
 				hostname=$(host $ip | awk '{print $5}')
 				host=$($hostname | cut -d. -f1)
 				printf "%s\n" \ 
