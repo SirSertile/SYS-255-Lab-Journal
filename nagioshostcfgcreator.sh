@@ -24,6 +24,7 @@ while getopts "ch: " option; do
 			ip=$OPTARG
 			# Checks via regex if it's actually an IP 
 			if ipcalc -cs $ip; then
+				cd /usr/local/nagios/etc/hosts
 				host=$(host $ip | awk '{print $5}' | cut -d. -f1)
 				contents="define host {
 				\tuse 	\t generic-host
