@@ -35,6 +35,7 @@ while getopts "ch: " option; do
 				\tcheck_interval \t 1
 				}"
 				echo -e $contents > $host.cfg
+				echo "Config file $host.cfg created successfully" 
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
