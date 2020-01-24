@@ -25,16 +25,15 @@ while getopts "ch: " option; do
 			# Checks via regex if it's actually an IP 
 			if ipcalc -cs $ip; then
 				hostname=$(host $ip | awk '{print $5}')
-				host=$($hostname | cut -d. -f1)
-				printf "%s\n" \ 
-				"define host {" \ 
-				"	use 	generic-host" \
-				"host_name	$host" \
-				"alias	$hostname" \
-				"address	$ip" \
-				"hostgroups	allgroups" \
-				"}" \
-				> $host.cfg
+				host=$( echo $hostname | cut -d. -f1)
+				contents="define host {
+					use 	generic-host
+					host_name	$host
+					alias	$hostname				
+					address	$ip
+					hostgroups	allgroups
+				}"
+				echo $contents > $host.cfg
 			else
 				echo "$ip is not a valid ip"
 			fi
