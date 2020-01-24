@@ -22,7 +22,8 @@ while getopts "ch: " option; do
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
 			ip=$OPTARG
-			# Checks via regex if it's actually an IP 
+			# Checks via ipcalc if it's actually an IP 
+			cd /usr/local/nagios/etc/hosts
 			if ipcalc -cs $ip; then
 				hostname=$(host $ip | awk '{print $5}')
 				host=$( echo $hostname | cut -d. -f1)
@@ -34,6 +35,7 @@ while getopts "ch: " option; do
 					hostgroups	allgroups
 				}"
 				echo $contents > $host.cfg
+				echo "Creation of $host.cfg successful"
 			else
 				echo "$ip is not a valid ip"
 			fi
