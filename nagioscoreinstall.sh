@@ -32,7 +32,7 @@ if (( $? == 0 )); then
 	htpasswd -c -b /usr/local/nagios/etc/htpasswd.users nagiosadmin admin
 	echo "Sets the default nagiosadmin password to admin. CHANGE THIS ON YOUR OWN."
 	echo "Navigate to (server's IP)/nagios and enter the default password and admin"
-	chmod -R +rwx /usr/local/nagios/var/rw/ 
+	chmod -R g+rwx /usr/local/nagios/var/rw/ 
 else
 	echo "Dependencies unmet or other yummy errors encountered"
 fi 
