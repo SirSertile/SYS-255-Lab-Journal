@@ -34,6 +34,8 @@ while getopts "ch: " option; do
 				\tmax_check_attempts \t 2 \n 
 				\tfirst_notification_delay \t 0 \n 
 				\tcheck_interval \t 1 \n 
+				\tactive_checks_enabled \t 1 \n 
+				\tcheck_command \t check-host-alive \n 
 				}"
 				echo -e $contents > $host.cfg
 				echo "Config file $host.cfg created successfully" 
