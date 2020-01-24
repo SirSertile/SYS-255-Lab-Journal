@@ -26,14 +26,14 @@ while getopts "ch: " option; do
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
 				host=$(host $ip | awk '{print $5}' | cut -d. -f1)
-				contents="define host {
-				\tuse 	\t generic-host
-				\thost_name	\t $host
-				\talias	\t $host				
-				\taddress	\t $ip
-				\tmax_check_attempts \t 2
-				\tfirst_notification_delay \t 0
-				\tcheck_interval \t 1
+				contents="define host { \n 
+				\tuse 	\t generic-host \n
+				\thost_name	\t $host \n 
+				\talias	\t $host \n		
+				\taddress	\t $ip \n 
+				\tmax_check_attempts \t 2 \n 
+				\tfirst_notification_delay \t 0 \n 
+				\tcheck_interval \t 1 \n 
 				}"
 				echo -e $contents > $host.cfg
 				echo "Config file $host.cfg created successfully" 
