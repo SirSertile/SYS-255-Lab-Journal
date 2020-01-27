@@ -31,11 +31,11 @@ if (( $? == 0 )); then
 	make install-init 
 	systemctl restart nagios.service
 	htpasswd -c -b /usr/local/nagios/etc/htpasswd.users nagiosadmin admin
-	echo "Sets the default nagiosadmin password to admin. CHANGE THIS ON YOUR OWN."
-	echo "Navigate to (server's IP)/nagios and enter the default password and admin"
 	chmod -R +rwx /usr/local/nagios/var/rw/ 
 	sed -i 's/SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
 	setenforce Permissive
+	echo "Sets the default nagiosadmin password to admin. CHANGE THIS ON YOUR OWN."
+	echo "Navigate to (server's IP)/nagios and enter the default password and admin"
 else
 	echo "Dependencies unmet or other yummy errors encountered"
 fi 
