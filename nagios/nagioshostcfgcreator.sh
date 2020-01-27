@@ -15,6 +15,8 @@ while getopts "ch: " option; do
 				mkdir hosts
 				echo "Updating nagios.cfg to add hosts folder. . ."
 				echo "# Defining hosts folder for nagios." >> nagios.cfg
+				wget -O ncpa.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/check_ncpa.cfg
+				mv ncpa.cfg hosts/ncpa.cfg
 			echo "cfg_dir=/usr/local/nagios/etc/hosts" >> nagios.cfg
 			fi
 		;;
