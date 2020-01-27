@@ -38,6 +38,10 @@ while getopts "ch: " option; do
 				\tcheck_command \t check-host-alive \n 
 				}"
 				echo -e $contents > $host.cfg
+				wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
+				sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
+				cat ncpaservices.cfg >> $host.cfg
+				rm ncpaservices.cfg
 				echo "Config file $host.cfg created successfully" 
 				systemctl restart nagios
 			else
