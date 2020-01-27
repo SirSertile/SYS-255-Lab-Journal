@@ -7,7 +7,7 @@ fi
 yum -y install gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix 
 if (( $? == 0 )); then
 	cd /tmp
-	wget -O nagioscore.tar.gz https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios-4.4.5.tar.gz
+	wget -O nagioscore.tar.gz https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/nagios-4.4.5.tar.gz
 	tar xzf nagioscore.tar.gz
 	cd nagios-4.4.5
 	./configure
