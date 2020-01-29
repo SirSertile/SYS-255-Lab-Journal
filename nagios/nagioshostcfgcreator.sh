@@ -8,7 +8,6 @@ cd /usr/local/nagios/etc
 # Parsing options
 function create_host(){
 	host=$(host $1 | awk '{print $5}' | cut -d. -f1)
-	echo $host
 	contents="define host { \n 
 	\tuse 	\t generic-host \n
 	\thost_name	\t $host \n 
