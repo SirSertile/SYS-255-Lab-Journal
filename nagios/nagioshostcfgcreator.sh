@@ -35,7 +35,7 @@ function create_host(){
 		echo "Config file $host.cfg created successfully with NCPE"
 	fi
 }
-while getopts "chl: " option; do
+while getopts "ch:l: " option; do
 	ip=$OPTARG
 	case $option in 
 		c)
