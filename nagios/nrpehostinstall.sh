@@ -6,6 +6,13 @@ if (( $EUID != 0 )); then
 fi
 yum -y install xinetd install gcc glibc glibc-common 
 if (( $? == 0 )); then
+	wget --no-check-certificate -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
+	tar zxf nagios-plugins.tar.gz
+	cd ./nagios-plugins-release-2.2.1/
+	./tools/setup
+	./configure
+	make
+	make install
 	wget -O nrpe.tar.gz https://github.com/SirSertile/SYS-255-Lab-Journal/blob/master/nagios/nrpe-4.0.0.tar.gz?raw=true
 	tar xzf nrpe.tar.gz
 	cd nrpe-4.0.0
