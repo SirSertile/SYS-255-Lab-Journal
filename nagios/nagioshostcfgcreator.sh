@@ -24,7 +24,7 @@ function create_host(){
 	if [ $2 = "h" ]; then
 		wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
 		sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
-		cat ncpaservices.cfg >> $1.cfg
+		cat ncpaservices.cfg >> $host.cfg
 		rm ncpaservices.cfg
 		echo "Config file $host.cfg created successfully with NCPA"
 	else
