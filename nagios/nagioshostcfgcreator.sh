@@ -8,11 +8,12 @@ cd /usr/local/nagios/etc
 # Parsing options
 function create_host(){
 	host=$(host $1 | awk '{print $5}' | cut -d. -f1)
+	echo $host
 	contents="define host { \n 
 	\tuse 	\t generic-host \n
 	\thost_name	\t $host \n 
 	\talias	\t $host \n		
-	\taddress	\t $ip \n 
+	\taddress	\t $1 \n 
 	\tmax_check_attempts \t 2 \n 
 	\tfirst_notification_delay \t 0 \n 
 	\tcheck_interval \t 1 \n 
@@ -35,6 +36,7 @@ function create_host(){
 	fi
 }
 while getopts "chl: " option; do
+	ip=$OPTARG
 	case $option in 
 		c)
 			# Creates and implements a directory for nagios to find config files in. 
@@ -51,11 +53,10 @@ while getopts "chl: " option; do
 		h)
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
-			ip=$OPTARG
 			# Checks via ipcalc if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
-				create_host $ip "h"
+				create_host "$ip" "h"
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
@@ -64,11 +65,10 @@ while getopts "chl: " option; do
 		l)
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
-			ip=$OPTARG
 			# Checks via ipcalc if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
-				create_host $ip "l"
+				create_host "$ip" "l"
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
