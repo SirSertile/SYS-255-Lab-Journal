@@ -28,11 +28,14 @@ while getopts "i: " option; do
 					make install-config
 					make install-inetd
 					make install-init 
-					systemctl enable xinetd && systemctl restart xinetd
-					systemctl enable nrpe && systemctl restart nrpe
 					firewall-cmd --add-port=5666/tcp --permanent
 					firewall-cmd --reload
 					sed -i "s/127.0.0.1 ::1/$ip/g" /etc/xinetd.d/nrpe
+					sed -i "s/disable *= yes/disable\t= no/g" /etc/xinetd.d/nrpe
+					sed -i "s/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,$ip/g" /usr/local/nagios/etc/nrpe.cfg
+					systemctl enable xinetd && systemctl restart xinetd
+					systemctl enable nrpe && systemctl restart nrpe
+					# echo -e "nrpe \t 5666/tcp \t # NRPE" | tee -a /etc/services
 				fi
 			else
 				echo "$ip is not a valid ip"
