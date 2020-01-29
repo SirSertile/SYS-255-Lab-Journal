@@ -12,4 +12,6 @@ if (( $? == 0 )); then
 	./configure
 	make check_nrpe
 	make install-plugin
+	firewall-cmd --add-port=5666/tcp --permanent
+	firewall-cmd --reload
 fi
