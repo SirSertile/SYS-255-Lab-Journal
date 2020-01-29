@@ -13,16 +13,15 @@ if (( $? == 0 )); then
 	./configure
 	make
 	make install
+	make install-groups-users
+	make install-config
+	make install-inetd
+	make install-init 
 	wget -O nrpe.tar.gz https://github.com/SirSertile/SYS-255-Lab-Journal/blob/master/nagios/nrpe-4.0.0.tar.gz?raw=true
 	tar xzf nrpe.tar.gz
 	cd nrpe-4.0.0
 	./configure
 	make all
-	make install-groups-users
-	make install
-	make install-config
-	make install-inetd
-	make install-init 
 	systemctl enable xinetd && systemctl restart xinetd
 	systemctl enable nrpe && systemctl restart nrpe
 	firewall-cmd --add-port=5666/tcp --permanent
