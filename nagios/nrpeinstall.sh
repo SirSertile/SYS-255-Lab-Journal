@@ -4,7 +4,7 @@ if (( $EUID != 0 )); then
 	echo "Run with sudo privileges"
 	exit
 fi
-yum install xinetd
+yum install xinetd -y
 if (( $? == 0 )); then
 	wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/blob/master/nagios/nrpe-4.0.0.tar.gz
 	tar xzf nrpe-4.0.0.tar.gz
