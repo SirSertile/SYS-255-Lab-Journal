@@ -4,7 +4,7 @@ if (( $EUID != 0 )); then
 	echo "Run with sudo privileges"
 	exit
 fi
-yum -y install xinetd install gcc glibc glibc-common 
+yum -y install xinetd install gcc glibc glibc-common libssl-devel
 if (( $? == 0 )); then
 	wget --no-check-certificate -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
 	tar zxf nagios-plugins.tar.gz
