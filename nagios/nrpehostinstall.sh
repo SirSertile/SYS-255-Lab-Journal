@@ -4,7 +4,7 @@ if (( $EUID != 0 )); then
 	echo "Run with sudo privileges"
 	exit
 fi
-yum -y install xinetd install gcc glibc glibc-common libssl-devel
+yum -y install gcc glibc glibc-common openssl-devel automake
 while getopts "i: " option; do
 	ip=$OPTARG
 	case $option in 
@@ -26,14 +26,15 @@ while getopts "i: " option; do
 					make
 					make all
 					make install-config
-					make install-inetd
+					#make install-inetd
 					make install-init 
 					firewall-cmd --add-port=5666/tcp --permanent
 					firewall-cmd --reload
-					sed -i "s/127.0.0.1 ::1/$ip/g" /etc/xinetd.d/nrpe
-					sed -i "s/disable *= yes/disable\t= no/g" /etc/xinetd.d/nrpe
+					#sed -i "s/127.0.0.1 ::1/$ip/g" /etc/xinetd.d/nrpe
+					#sed -i "s/disable *= yes/disable\t= no/g" /etc/xinetd.d/nrpe
 					sed -i "s/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,$ip/g" /usr/local/nagios/etc/nrpe.cfg
-					systemctl enable xinetd && systemctl restart xinetd
+					sed -i "s/dont_blame_nrpe=0/dont_blame_nrpe=1/g" /usr/local/nagios/etc/nrpe.cfg
+					#systemctl enable xinetd && systemctl restart xinetd
 					systemctl enable nrpe && systemctl restart nrpe
 					# echo -e "nrpe \t 5666/tcp \t # NRPE" | tee -a /etc/services
 				fi
