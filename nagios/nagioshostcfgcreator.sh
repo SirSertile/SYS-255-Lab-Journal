@@ -52,7 +52,7 @@ while getopts "chl: " option; do
 			# Creating a host based on IP 
 			# Command to get the host from the IP 
 			ip=$OPTARG
-			# Checks via regex if it's actually an IP 
+			# Checks via ipcalc if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
 				create_host $ip "h"
@@ -62,8 +62,10 @@ while getopts "chl: " option; do
 			fi
 		;;
 		l)
+			# Creating a host based on IP 
+			# Command to get the host from the IP 
 			ip=$OPTARG
-			# Checks via regex if it's actually an IP 
+			# Checks via ipcalc if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
 				create_host $ip "l"
