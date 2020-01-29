@@ -6,9 +6,9 @@ if (( $EUID != 0 )); then
 fi
 yum install xinetd -y
 if (( $? == 0 )); then
-	wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/blob/master/nagios/nrpe-4.0.0.tar.gz
-	tar xzf nrpe-4.0.0.tar.gz
-	cd nrpe-4.0.0
+	wget -O nrpe.tar.gz https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/blob/master/nagios/nrpe-4.0.0.tar.gz
+	tar xzf nrpe.tar.gz
+	cd nrpe
 	./configure
 	make all
 	make install-groups-users
