@@ -7,7 +7,7 @@ fi
 cd /usr/local/nagios/etc
 # Parsing options
 function create_host(){
-	host=$(host $ip | awk '{print $5}' | cut -d. -f1)
+	host=$(host $1 | awk '{print $5}' | cut -d. -f1)
 	contents="define host { \n 
 	\tuse 	\t generic-host \n
 	\thost_name	\t $host \n 
@@ -19,21 +19,20 @@ function create_host(){
 	\tactive_checks_enabled \t 1 \n 
 	\tcheck_command \t check-host-alive \n 
 	}"
-	echo -e $contents > $host.cfg
-}
-function create_ncpa(){
-	wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
-	sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
-	cat ncpaservices.cfg >> $host.cfg
-	rm ncpaservices.cfg
-	echo "Config file $host.cfg created successfully with NCPA"
-}
-function create_ncpe(){
-	wget -O ncpeservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpe_services.cfg
-	sed -i "s/HOSTNAME/$host/g" ncpeservices.cfg
-	cat ncpeservices.cfg >> $host.cfg
-	rm ncpeservices.cfg
-	echo "Config file $host.cfg created successfully with NCPA"
+	echo -e $contents > $1.cfg
+	if [ $2 = "h" ]; then
+		wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
+		sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
+		cat ncpaservices.cfg >> $1.cfg
+		rm ncpaservices.cfg
+		echo "Config file $host.cfg created successfully with NCPA"
+	else
+		wget -O ncpeservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpe_services.cfg
+		sed -i "s/HOSTNAME/$host/g" ncpeservices.cfg
+		cat ncpeservices.cfg >> $host.cfg
+		rm ncpeservices.cfg
+		echo "Config file $host.cfg created successfully with NCPE"
+	fi
 }
 while getopts "chl: " option; do
 	case $option in 
@@ -56,8 +55,7 @@ while getopts "chl: " option; do
 			# Checks via regex if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
-				create_host
-				create_ncpa
+				create_host $ip "h"
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
@@ -68,8 +66,7 @@ while getopts "chl: " option; do
 			# Checks via regex if it's actually an IP 
 			if ipcalc -cs $ip; then
 				cd /usr/local/nagios/etc/hosts
-				create_host
-				create_ncpe
+				create_host $ip "l"
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
