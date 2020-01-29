@@ -19,6 +19,6 @@ if (( $? == 0 )); then
 	service xinetd restart
 	systemctl reload xinetd
 	systemctl enable nrpe && systemctl start nrpe
-	firewall-cmd --add-port=5666 --permanent
+	firewall-cmd --add-port=5666/tcp --permanent
 	firewall-cmd --reload
 fi
