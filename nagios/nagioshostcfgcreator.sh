@@ -19,7 +19,7 @@ function create_host(){
 	\tactive_checks_enabled \t 1 \n 
 	\tcheck_command \t check-host-alive \n 
 	}"
-	echo -e $contents > $1.cfg
+	echo -e $contents > $host.cfg
 	if [ $2 = "h" ]; then
 		wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
 		sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
