@@ -10,14 +10,8 @@ if (( $? == 0 )); then
 	tar xzf nrpe.tar.gz
 	cd nrpe-4.0.0
 	./configure
-	make all
-	make install-groups-users
-	make install
-	make install-config
-	make install-inetd
-	make install-init 
-	systemctl enable xinetd && systemctl restart xinetd
-	systemctl enable nrpe && systemctl restart nrpe
+	make check_nrpe
+	make install-plugin
 	firewall-cmd --add-port=5666/tcp --permanent
 	firewall-cmd --reload
 fi
