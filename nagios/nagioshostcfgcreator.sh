@@ -35,7 +35,7 @@ function create_ncpe(){
 	rm ncpeservices.cfg
 	echo "Config file $host.cfg created successfully with NCPA"
 }
-while getopts "ch: " option; do
+while getopts "chl: " option; do
 	case $option in 
 		c)
 			# Creates and implements a directory for nagios to find config files in. 
