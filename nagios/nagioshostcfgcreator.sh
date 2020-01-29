@@ -73,6 +73,7 @@ while getopts "ch: " option; do
 				systemctl restart nagios
 			else
 				echo "$ip is not a valid ip"
+			fi
 		;;
 		\?)
 			echo "Illegal argument $OPTARG"
