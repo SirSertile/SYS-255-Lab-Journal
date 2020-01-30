@@ -11,7 +11,7 @@ if (( $? == 0 )); then
 	cd nrpe-4.0.0
 	./configure --enable-command-args --enable-ssl
 	make check_nrpe
-	make install-plugin
+	#make install-plugin
 	firewall-cmd --add-port=5666/tcp --permanent
 	firewall-cmd --reload
 fi
