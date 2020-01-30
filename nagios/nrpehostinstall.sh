@@ -4,7 +4,7 @@ if (( $EUID != 0 )); then
 	echo "Run with sudo privileges"
 	exit
 fi
-yum -y install gcc glibc glibc-common openssl-devel automake
+yum -y install gcc glibc glibc-common openssl-devel automake net-snmp epel-release
 while getopts "i: " option; do
 	ip=$OPTARG
 	case $option in 
@@ -34,6 +34,8 @@ while getopts "i: " option; do
 					#sed -i "s/disable *= yes/disable\t= no/g" /etc/xinetd.d/nrpe
 					sed -i "s/allowed_hosts=127.0.0.1,::1/allowed_hosts=127.0.0.1,::1,$ip/g" /usr/local/nagios/etc/nrpe.cfg
 					sed -i "s/dont_blame_nrpe=0/dont_blame_nrpe=1/g" /usr/local/nagios/etc/nrpe.cfg
+					echo "command[check_load]=@pluginsdir@/check_load -r -w .15,.10,.05 -c .30,.25,.20" >> /usr/local/nagios/etc/nrpe.cfg
+					echo "command[check_hda1]=@pluginsdir@/check_disk -w 20% -c 10% -p /dev/sda2" >> /usr/local/nagios/etc/nrpe.cfg
 					#systemctl enable xinetd && systemctl restart xinetd
 					systemctl enable nrpe && systemctl restart nrpe
 					# echo -e "nrpe \t 5666/tcp \t # NRPE" | tee -a /etc/services
