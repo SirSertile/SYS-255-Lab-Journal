@@ -18,8 +18,7 @@ tar -zxvf sendEmail-v1.56.tar.gz
 
 #copy and send it to bin
 sudo cp -a sendEmail-v1.56/sendEmail /usr/local/bin
-cd /usr/local/bin/sendEmail-v1.56
-perl sendEmail
+perl /usr/local/bin/sendEmail
 
 echo '$USER5$=david.serate@mymail.champlain.edu' > /usr/local/nagios/etc/resource.cfg
 echo '$USER7$=smtp.gmail.com:587' > /usr/local/nagios/etc/resource.cfg
