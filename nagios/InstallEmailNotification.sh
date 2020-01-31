@@ -18,12 +18,13 @@ tar -zxvf sendEmail-v1.56.tar.gz
 
 #copy and send it to bin
 sudo cp -a sendEmail-v1.56/sendEmail /usr/local/bin
+# why is this here? 
 perl /usr/local/bin/sendEmail
 
-echo '$USER5$=david.serate@mymail.champlain.edu' > /usr/local/nagios/etc/resource.cfg
-echo '$USER7$=smtp.gmail.com:587' > /usr/local/nagios/etc/resource.cfg
-echo '$USER9$=email' > /usr/local/nagios/etc/resource.cfg
-echo '$USER10$=password' > /usr/local/nagios/etc/resource.cfg
+echo '$USER5$=david.serate@mymail.champlain.edu' >> /usr/local/nagios/etc/resource.cfg
+echo '$USER7$=smtp.gmail.com:587' >> /usr/local/nagios/etc/resource.cfg
+echo '$USER9$=email' >> /usr/local/nagios/etc/resource.cfg
+echo '$USER10$=password' >> /usr/local/nagios/etc/resource.cfg
 
 cd /usr/local/nagios/etc/objects/
 
