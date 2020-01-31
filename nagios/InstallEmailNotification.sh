@@ -7,7 +7,7 @@ fi
 
 #installation of basic systemrecs
 #yum install -y libio-socket-ssl-perl libnet-ssleay-perl perl
-yum install -y perl-io-socket-ssl perl perl-Net-SSLeay
+yum install -y perl-IO-Socket-SSL perl perl-Net-SSLeay
 yum install -y 'perl(Net::SSLeay)' 'perl(IO::Socket::SSL)'
 
 cd /usr/local/nagios/etc/objects
