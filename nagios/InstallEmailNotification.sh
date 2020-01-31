@@ -21,7 +21,6 @@ sudo cp -a sendEmail-v1.56/sendEmail /usr/local/bin
 
 perl sendEmail
 
-
 echo '$USER5$=david.serate@mymail.champlain.edu' > /usr/local/nagios/etc/resource.cfg
 echo '$USER7$=smtp.gmail.com:587' > /usr/local/nagios/etc/resource.cfg
 echo '$USER9$=email' > /usr/local/nagios/etc/resource.cfg
