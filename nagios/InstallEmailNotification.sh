@@ -29,6 +29,3 @@ wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nag
 cd /usr/local/nagios/etc/
 wget -O contactsnew.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/contact.cfg
 cat contactsnew.cfg >> contacts.cfg
-
-
-cp commands.cfg commands.cfg.old
