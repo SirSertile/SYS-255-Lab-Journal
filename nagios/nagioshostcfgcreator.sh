@@ -8,9 +8,9 @@ cd /usr/local/nagios/etc
 # Parsing options
 function create_host(){
 	host=$(host $1 | awk '{print $5}' | cut -d. -f1)
-	wget -O $host.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
-	sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
-	sed -i "s/IPADDR/$1/g" ncpaservices.cfg
+	wget -O $host.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/host.cfg
+	sed -i "s/HOSTNAME/$host/g" $host.cfg
+	sed -i "s/IPADDR/$1/g" $host.cfg
 	if [ $2 = "h" ]; then
 		wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
 		sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
