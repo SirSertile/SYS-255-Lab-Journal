@@ -6,7 +6,7 @@ if (( $EUID != 0 )); then
 fi
 
 yum install -y ssmtp
-
+cd /usr/local/nagios/etc
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/email.cfg
 
 # add contact.cfg to define a location for where the emails are sent 
