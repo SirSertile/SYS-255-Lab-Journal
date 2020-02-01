@@ -21,12 +21,12 @@ sudo cp -a sendEmail-v1.56/sendEmail /usr/local/bin
 
 # add resources2.cfg, and adds it to the nagios config file 
 cd /usr/local/nagios/etc/
-wget https://raw.githubusercontent.com/SirSertile/master/nagios/resources2.cfg
+wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/resources2.cfg
 sed '/resource_file=/usr/local/nagios/etc/resources.cfg/a resource_file=/usr/local/nagios/etc/resources2.cfg' /usr/local/nagios/etc/nagios.cfg
 
 # add contact.cfg to define a location for where the emails are sent 
 cd /usr/local/nagios/etc/hosts/
-wget https://raw.githubusercontent.com/SirSertile/master/nagios/contact.cfg
+wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/contact.cfg
 
 
 cp commands.cfg commands.cfg.old
