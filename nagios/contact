@@ -8,7 +8,7 @@ define contact{
 	service_notification_options    w,u,c,r
 	host_notification_options       d,u,r
 	service_notification_commands   custom-notify-service-by-email
-	host_notification_commands      custom-host-notify-by-email
+	host_notification_commands      custom-notify-host-by-email
 	email			david.serate@mymail.champlain.edu
 	can_submit_commands	1
 	}
