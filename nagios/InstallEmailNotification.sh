@@ -27,6 +27,6 @@ sed '/resource_file=/usr/local/nagios/etc/resources.cfg/a resource_file=/usr/loc
 # add contact.cfg to define a location for where the emails are sent 
 cd /usr/local/nagios/etc/hosts/
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/contact.cfg
-
+wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/email.cfg
 
 cp commands.cfg commands.cfg.old
