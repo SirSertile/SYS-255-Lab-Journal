@@ -16,5 +16,5 @@ if [ $(apt-cache policy docker-ce | grep download.docker.com -c) -gt 0 ]; then
 	apt install -y docker-ce 
 	systemctl enable docker
 	usermod -aG docker david
-	apt install docker-compose
+	apt install -y docker-compose
 fi
