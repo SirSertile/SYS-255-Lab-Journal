@@ -9,9 +9,9 @@ apt -y install apt-transport-https ca-certificates curl software-properties-comm
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Adding the new repository for docker
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"\
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update -y
-if ($(apt-cache policy docker-ce | grep download.docker.com -c) -gt 0); then
+if [ $(apt-cache policy docker-ce | grep download.docker.com -c) -gt 0 ]; then
 	apt install -y docker-ce 
 	systemctl enable docker
 fi
