@@ -8,18 +8,9 @@ cd /usr/local/nagios/etc
 # Parsing options
 function create_host(){
 	host=$(host $1 | awk '{print $5}' | cut -d. -f1)
-	contents="define host { \n 
-	\tuse 	\t generic-host \n
-	\thost_name	\t $host \n 
-	\talias	\t $host \n		
-	\taddress	\t $1 \n 
-	\tmax_check_attempts \t 2 \n 
-	\tfirst_notification_delay \t 0 \n 
-	\tcheck_interval \t 1 \n 
-	\tactive_checks_enabled \t 1 \n 
-	\tcheck_command \t check-host-alive \n 
-	}"
-	echo -e $contents > $host.cfg
+	wget -O $host.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/host.cfg
+	sed -i "s/HOSTNAME/$host/g" $host.cfg
+	sed -i "s/IPADDR/$1/g" $host.cfg
 	if [ $2 = "h" ]; then
 		wget -O ncpaservices.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/ncpa_services.cfg
 		sed -i "s/HOSTNAME/$host/g" ncpaservices.cfg
@@ -44,10 +35,11 @@ while getopts "ch:l: " option; do
 				mkdir hosts
 				echo "Updating nagios.cfg to add hosts folder. . ."
 				echo "# Defining hosts folder for nagios." >> nagios.cfg
-				wget -O ncpa.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/check_ncpa.cfg
-				mv ncpa.cfg hosts/ncpa.cfg
-			echo "cfg_dir=/usr/local/nagios/etc/hosts" >> nagios.cfg
+				echo "cfg_dir=/usr/local/nagios/etc/hosts" >> nagios.cfg
 			fi
+			wget -O ncpa.cfg https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/nagios/check_ncpa.cfg
+			rm hosts/ncpa.cfg
+			mv ncpa.cfg hosts/ncpa.cfg
 		;;
 		h)
 			# Creating a host based on IP 
