@@ -9,3 +9,5 @@ if [ $(ls | grep docker-file -c) -eq 0 ]; then
 	mkdir docker-file
 fi
 cd docker-file
+https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/docker/docker-compose.yml
+docker-compose up -d
