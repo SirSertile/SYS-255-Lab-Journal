@@ -11,3 +11,4 @@ fi
 cd docker-file
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/docker/docker-compose.yml
 docker-compose up -d
+ufw allow 8000
