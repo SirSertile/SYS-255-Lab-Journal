@@ -11,6 +11,6 @@ fi
 cd elk
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/docker-compose.yml
 docker-compose up -d
-
-docker wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.deb & sudo dpkg -i mysql.deb 
+wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.deb
+docker cp mysql.deb / & sudo dpkg -i mysql.deb 
 ufw allow 80
