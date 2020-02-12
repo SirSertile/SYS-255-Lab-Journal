@@ -11,6 +11,8 @@ fi
 cd jira
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/docker-compose.yml
 docker-compose up -d
-wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.deb
-docker cp mysql.deb / & sudo dpkg -i mysql.deb 
+wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.tar.gz
+
+docker cp mysql.tar.gz jira_jira_1:/opt/atlassian/jira/lib 
+docker exec tar -zxf /opt/atlassian/jira/lib/mysql.tar.gz
 ufw allow 80
