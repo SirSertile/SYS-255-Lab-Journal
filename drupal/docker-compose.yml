@@ -5,13 +5,15 @@ services:
   mysql:
     image: mysql:5.7
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: drupal
       MYSQL_DATABASE: drupal
       MYSQL_USER: drupal
-      MYSQL_PASSWORD: drupal  
+      MYSQL_PASSWORD: drupal
+    ports:
+      - 3306:3306
 
   drupal:
     depends_on:

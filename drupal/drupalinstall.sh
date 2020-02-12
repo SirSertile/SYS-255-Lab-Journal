@@ -11,4 +11,4 @@ fi
 cd drupal
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/drupal/docker-compose.yml
 docker-compose up -d
-ufw allow 8000
+ufw allow 80

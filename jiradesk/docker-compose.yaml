@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  jira:
+    image: atlassian/jira-software
+    volumes:
+      - /var/atlassian/application-data/jira
+    ports:
+      - 8080:8080 
+    restart: always
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - /var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: jira
+      MYSQL_DATABASE: jira
+      MYSQL_USER: jira
+      MYSQL_PASSWORD: jira
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql_data:
