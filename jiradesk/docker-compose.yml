@@ -10,6 +10,7 @@ services:
   mysql:
     image: mysql:5.7
     volumes:
+      - /var/lib/mysql
       - ./:/var/lib/mysql/conf.d
     restart: always
     environment:
