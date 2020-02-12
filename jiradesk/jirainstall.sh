@@ -5,10 +5,10 @@ if (( $EUID != 0 )); then
 	exit
 fi
 cd /home/david
-if [ $(ls | grep elk -c) -eq 0 ]; then
-	mkdir elk
+if [ $(ls | grep jira -c) -eq 0 ]; then
+	mkdir jira
 fi
-cd elk
+cd jira
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/docker-compose.yml
 docker-compose up -d
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.deb
