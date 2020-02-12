@@ -2,10 +2,10 @@ version: '3.3'
 
 services:
 
-  db:
+  mysql:
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: drupal
@@ -15,7 +15,7 @@ services:
 
   drupal:
     depends_on:
-      - db
+      - mysql
     image: drupal:latest
     ports:
       - 80:80
@@ -25,10 +25,11 @@ services:
       - drupal_themes:/var/www/html/themes
       - drupal_sites:/var/www/html/sites
     restart: always
+    
 
 volumes:
   drupal_modules:
   drupal_profiles:
   drupal_themes:
   drupal_sites:
-  db_data:
+  mysql_data:
