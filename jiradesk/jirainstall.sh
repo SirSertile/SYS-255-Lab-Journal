@@ -13,7 +13,7 @@ wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jir
 docker-compose up -d
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/mysql.jar
 wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/jiradesk/my.cnf
-docker cp my.cnf jira_jira_1:/etc/mysql/my.cnf
+docker cp my.cnf jira_jira_1:/etc/mysql/conf.d
 docker cp mysql.jar jira_jira_1:/opt/atlassian/jira/lib 
 docker exec jira_jira_1 mv /opt/atlassian/jira/lib/mysql.jar /opt/atlassian/jira/lib/mysql-connector-java-8.0.19.jar
 docker restart jira_jira_1 
