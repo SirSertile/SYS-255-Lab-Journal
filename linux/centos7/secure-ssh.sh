@@ -15,7 +15,7 @@ if [ ! -z "$1" ]; then
 	chmod 700 /home/$1/.ssh
 	chmod 600 /home/$1/.ssh/authorized_keys
 	chown -R $1:$1 /home/$1/
-	#sed -i 's/SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+	sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 else
 	echo "Provide an argument." 
 	exit
