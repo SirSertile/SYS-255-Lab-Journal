@@ -6,9 +6,9 @@ if (( $EUID != 0 )); then
 	echo "Run with sudo privileges"
 	exit
 fi
-if [ -z "$1" ]; then
+if [ ! -z "$1" ]; then
 	echo "Creating user $($1)"
-	useradd -m -d /home/$1 -s /bin/bash "$1"
+	useradd -m -d /home/"$1" -s /bin/bash "$1"
 	mkdir /home/$1/.ssh
 	mkdir /home/$1/.ssh/authorized_keys
 	cd /home/$1/.ssh/authorized_keys
