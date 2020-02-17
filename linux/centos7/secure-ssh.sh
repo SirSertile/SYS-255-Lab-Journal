@@ -10,13 +10,12 @@ if [ ! -z "$1" ]; then
 	echo "Creating user $1"
 	useradd -m -d /home/$1 -s /bin/bash $1
 	mkdir /home/$1/.ssh
-	mkdir /home/$1/.ssh/authorized_keys
-	cd /home/$1/.ssh/authorized_keys
-	wget https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/linux/keys/id_rsa.pub
+	cd /home/$1/.ssh
+	wget -O authorized_keys https://raw.githubusercontent.com/SirSertile/SYS-255-Lab-Journal/master/linux/keys/id_rsa.pub
 	chmod 700 /home/$1/.ssh
 	chmod 600 /home/$1/.ssh/authorized_keys
 	chown -R $1:$1 /home/$1/
-	sed -i 's/SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+	#sed -i 's/SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
 else
 	echo "Provide an argument." 
 	exit
