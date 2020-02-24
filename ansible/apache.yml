@@ -1,0 +1,9 @@
+---
+  - name: apache sys265
+    hosts: apache
+    become: true
+    vars: 
+       install_utilites: true
+       firewalld_enable: true
+    roles:
+    - mariuszczyz.centos_apache

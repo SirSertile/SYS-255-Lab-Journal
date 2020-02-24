@@ -1,0 +1,9 @@
+---
+  - name: webmin sys265
+    hosts: webmin
+    become: true
+    vars: 
+       install_utilites: true
+       firewalld_enable: true
+    roles:
+    - semuadmin.webmin
