@@ -10,20 +10,20 @@ while getopts "u:d: " option; do
 	val=$OPTARG
 	case $option in
 		u)
-			domainadmin=val
+			domainadmin=$val
 		;;
 		d)
-			domain=val
+			domain=$val
 		;;
 	esac
 done
 # I
 yum install -y realmd samba samba-common oddjob oddjob-mkhomedir sssd
 
-if [ $domain ] && [ $domainadmin ]; do
+if [ [ $domain ] && [ $domainadmin ] ]; do
 	realm join --user=$domainadmin@$domain $domain
 	touch /etc/sudoers.d/windowsadmins
-	echo "%($domain)//(Domain\ Admins) ALL=(ALL) ALL"
+	echo "%($domain)//(Domain\ Admins) ALL=(ALL) ALL" > /etc/sudoers.d/windowsadmins
 else
 	echo "Make sure you specify the domain with -d and user with -u "
 fi
