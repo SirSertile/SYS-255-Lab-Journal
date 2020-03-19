@@ -7,8 +7,8 @@ if (( $EUID != 0 )); then
 fi
 # Parsing options for getopts 
 while getopts "u:d: " option; do
-	case $option in
 	val=$OPTARG
+	case $option in
 		u)
 			domainadmin=val
 		;;
