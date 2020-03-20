@@ -23,7 +23,7 @@ yum install -y realmd samba samba-common oddjob oddjob-mkhomedir sssd
 if [ $domain ] && [ $domainadmin ]; then
 	realm join --user=$domainadmin@$domain $domain
 	touch /etc/sudoers.d/windowsadmins
-	echo "%$domain//Domain\ Admins ALL=(ALL) ALL" > /etc/sudoers.d/windowsadmins
+	echo '"'%$domain\Domain Admins'"' ALL=(ALL) ALL > /etc/sudoers.d/windowsadmins
 else
 	echo "Make sure you specify the domain with -d and user with -u "
 fi
