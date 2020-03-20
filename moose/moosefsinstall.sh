@@ -1,6 +1,6 @@
 #!/bin/bash
 # Written by David Serate
-# Auto-joins to a domain 
+# Installs the MooseFS keys and repos
 if (( $EUID != 0 )); then 
 	echo "Run with sudo privileges"
 	exit
