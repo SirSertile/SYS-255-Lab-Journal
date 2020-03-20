@@ -15,6 +15,9 @@ while getopts "mcl " option; do
 	case $option in
 		m)
 			yum install -y moosefs-master moosefs-cgi moosefs-cgiserv moosefs-cli
+			cd /etc/mfs
+			cp mfsmaster.cfg.sample mfsmaster.cfg
+			cp mfsexports.cfg.sample mfsexports.cfg
 			break
 		;;
 		c)
