@@ -22,10 +22,15 @@ while getopts "mcl " option; do
 		;;
 		c)
 			yum install -y moosefs-chunkserver
+			cd /etc/ mfs
+			cp mfsmetalogger.cfg.sample mfsmetalogger.cfg
 			break
 		;;
 		l)
 			yum install -y moosefs-metalogger
+			cd /etc/ mfs
+			cp mfschunkserver.cfg.sample mfschunkserver.cfg
+			cp mfshdd.cfg.sample mfshdd.cfg
 			break
 		;;
 	esac
