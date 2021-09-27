@@ -1,3 +1,3 @@
 # ATTACKER FILE 1 
-import ransomware.py as rm
+import ransomware as rm
 rm.attackersetup()

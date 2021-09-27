@@ -1,9 +1,10 @@
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.backends.interfaces import RSABackend
 from cryptography.fernet import Fernet as f
 def keygen():
   """Used to generate a private/public key pair"""
-  rsa_priv = rsa.generate_private_key(public_exponent=65537,key_size=2048)
+  rsa_priv = rsa.generate_private_key(public_exponent=65537,key_size=2048,backend=RSABackend)
   rsa_public = rsa_priv.public_key()
   return (rsa_priv, rsa_public)
 
@@ -127,3 +128,4 @@ def decrypttarget():
     with open("target.txt", "wb") as output:
       output.write(f(symmkey).decrypt(file_data))
     print()
+    
