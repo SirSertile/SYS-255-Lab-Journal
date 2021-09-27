@@ -1,3 +1,3 @@
 # ATTACKER FILE 2 
-import ransomware.py
+import ransomware as rm
 rm.returnkey()
