@@ -13,3 +13,5 @@ The target runs target1.py, which takes attackkey.txt, creates a symmetric key a
 If the ransom is paid, the attacker runs attack2.py, which decrypts the encrypted symmetric key in enckey.txt with the private key inside of privkey.txt and outputs symmkey.txt. The attacker transfers symmkey.txt back to the target.
 
 The target then runs target2.py, which takes symmkey.txt and uses the contained symmetric key to decrypt target.txt
+# Demonstration
+I have recorded a [demonstration](https://champlain.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e5fe31bc-c6de-4079-b46c-adb001522f94) of this for SEC-440.
