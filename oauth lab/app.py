@@ -17,10 +17,10 @@ token_url = 'https://github.com/login/oauth/access_token'
 with open("creds.json", "r") as jsonfile:
     jsoncontent = jsonfile.read()
 creds = json.loads(jsoncontent)
-client_id = creds('client_id')
-client_secret = creds('client_secret')
-authorization_base_url = creds('authorization_base_url')
-token_url= creds('token_url')
+client_id = creds['client_id']
+client_secret = creds['client_secret']
+authorization_base_url = creds['authorization_base_url']
+token_url= creds['token_url']
 
 @app.route("/")
 def demo():
